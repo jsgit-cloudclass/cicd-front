@@ -1,7 +1,6 @@
 def label = "worker-${UUID.randomUUID().toString()}"
 
 // Slack 알림
-
 podTemplate(label: label, containers: [
 // #0 필요한 Pod생성
 	// 빌드에 사용할 패키지에 따라 다른 template 을 사용합니다.
@@ -59,7 +58,6 @@ podTemplate(label: label, containers: [
 				}
 			}
 				
-
 		// #5 컨테이너 이미지 생성 Stage
 		stage('Dockerizing') {
 			container('docker') {
@@ -77,10 +75,9 @@ podTemplate(label: label, containers: [
 			container('kubectl') {
 				sh "kubectl apply -n ${namespace} -f ${deployment}"
 				sh "kubectl apply -n ${namespace} -f ${service}"
-				sh "kubectl get svc -n devops"
+				sh "kubectl get svc -n lab07"
 				}
 			}
-
 
 		// Slack - 빌드 성공시
 
